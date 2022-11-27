@@ -1,6 +1,6 @@
 # Spring PetClinic Sample Application
 
-# petclinic-docker-mysql
+# petclinic-multistage-docker-mysql
 
 
 Deploy Spring Boot Petclinic Application + MYSQL Application to Docker
@@ -22,7 +22,7 @@ docker build . -t petclinic
 
 # step 3:- For running the final application linking the petclinic application and mysql database.
 
-docker run -d -p 9000:8080 --name petclinic-final-app --link kumar-mysql:mysql petclinic   
+docker run -d -p 8080:8080 --name petclinic-final-app --link kumar-mysql:mysql petclinic   
 
 
 For logs
@@ -30,6 +30,6 @@ For logs
 docker logs container-name
 
 
-Get:  http://18.188.102.152:9000/petclinic
+Get:  http://18.188.102.152:8080/petclinic
 
 ========================================================================
