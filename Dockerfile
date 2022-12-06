@@ -1,5 +1,5 @@
 FROM ubuntu AS build
-MAINTAINER kumar5483reddy@gmail.com
+MAINTAINER devops
 ARG MAVEN_VERSION="3.8.6"
 RUN apt-get update -y && apt-get install openjdk-11-jdk -y && apt-get install wget -y &&  apt-get install unzip -y && apt-get install git -y
 RUN java -version
@@ -8,10 +8,9 @@ RUN wget  https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-
 #extract the file
 RUN tar -zxvf maven.tar.gz
 RUN pwd && ls
-RUN apache-maven-$MAVEN_VERSION/bin/mvn --version && cd /apache-maven-$MAVEN_VERSION/bin/ && pwd
-RUN git clone https://github.com/KUMAR-REDDY-BAVANASI/petclinic-docker-mysql.git
+RUN apache-maven-$MAVEN_VERSION/bin/mvn --version && cd /apache-maven-$MAVEN_VERSION/bin/ && pwd 
+RUN git clone https://github.com/jagadishasam/petclinic-docker-mysql.git
 RUN cd petclinic-docker-mysql && /apache-maven-$MAVEN_VERSION/bin/mvn clean install -P MySQL
 
 FROM tomcat:9
 COPY --from=build petclinic-docker-mysql/target/petclinic.war /usr/local/tomcat/webapps/
-EXPOSE 8080
