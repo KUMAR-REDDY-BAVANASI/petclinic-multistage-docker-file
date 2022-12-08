@@ -9,7 +9,7 @@ RUN wget  https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-
 RUN tar -zxvf maven.tar.gz
 RUN pwd && ls
 RUN apache-maven-$MAVEN_VERSION/bin/mvn --version && cd /apache-maven-$MAVEN_VERSION/bin/ && pwd 
-RUN git clone https://github.com/jagadishasam/petclinic-docker-mysql.git
+RUN git clone https://github.com/KUMAR-REDDY-BAVANASI/petclinic-docker-mysql.git
 RUN cd petclinic-docker-mysql && /apache-maven-$MAVEN_VERSION/bin/mvn clean install -P MySQL
 
 FROM tomcat:9
